@@ -11,27 +11,29 @@
   --teal:#03dacc;--teal-dark:#02b8ac;--teal-light:#e6faf9;--teal-mid:#b2f0ed;
   --text:#1a1a1a;--text2:#555;--text3:#999;
   --bg:#fff;--bg2:#f7fefe;--bg3:#f0fcfc;
-  --border:#e0f5f4;--border2:#03dacc;
-  --ok-bg:#e6faf9;--ok-text:#028a82;
-  --ng-bg:#fff0f0;--ng-text:#c0392b;
+  --border:#e0f5f4;
   --warn-bg:#fffbea;--warn-text:#b07a00;
-  --check-bg:#e8f4ff;--check-text:#2272c3;
   --radius:10px;--radius-lg:18px;
   --shadow:0 2px 16px rgba(3,218,204,0.1);
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}
+
+/* header */
 .header{background:#fff;border-bottom:1.5px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
 .header-right{font-size:12px;color:var(--text3)}
 .header-right a{color:var(--teal);text-decoration:none;font-weight:600}
+
+/* hero */
 .hero{background:linear-gradient(135deg,#f0fcfc 0%,#e8faf9 50%,#f7fefe 100%);padding:36px 24px 32px;text-align:center;border-bottom:1px solid var(--border)}
 .hero h1{font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.02em}
 .hero h1 span{color:var(--teal)}
 .hero p{font-size:13px;color:var(--text2);line-height:1.7;max-width:480px;margin:0 auto}
+
+/* main */
 .main{max-width:720px;margin:0 auto;padding:28px 20px 80px}
-.section-title{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 
 /* input */
-.input-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
+.input-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
 .input-card:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px rgba(3,218,204,0.1)}
 .input-row{display:flex;gap:10px}
 .input-row input{flex:1;height:46px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:0 14px;font-size:15px;color:var(--text);outline:none;transition:border-color .15s}
@@ -42,65 +44,47 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 .btn-check:active{transform:scale(.98)}
 .btn-check:disabled{opacity:.4;cursor:not-allowed}
 
-/* source paste */
-.paste-toggle{font-size:12px;color:var(--teal);cursor:pointer;text-decoration:underline;display:inline-flex;align-items:center;gap:4px;margin-top:10px;background:none;border:none;padding:0}
-.paste-area{display:none;margin-top:12px}
-.paste-area.open{display:block}
-.paste-area textarea{width:100%;height:120px;border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 12px;font-size:12px;font-family:monospace;color:var(--text);outline:none;resize:vertical;background:var(--bg2)}
-.paste-area textarea:focus{border-color:var(--teal)}
-.paste-hint{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.7}
-.paste-hint strong{color:var(--text2)}
-.paste-steps{margin-top:6px;display:flex;flex-direction:column;gap:4px}
-.paste-steps li{list-style:none;font-size:11px;color:var(--text3);display:flex;gap:6px}
-.paste-steps li::before{content:"›";color:var(--teal);font-weight:700;flex-shrink:0}
-.btn-paste-check{margin-top:10px;height:38px;border:none;border-radius:var(--radius);background:var(--bg3);color:var(--teal-dark);font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:0 16px;border:1.5px solid var(--teal-mid);transition:background .15s}
-.btn-paste-check:hover{background:var(--teal-light)}
-
 /* results */
 .results{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
-.result-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);transition:border-color .2s}
-.result-card:hover{border-color:var(--teal-mid)}
+.result-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
 .rh{display:flex;align-items:flex-start;gap:10px;padding:16px 20px 14px}
-.badge{flex-shrink:0;font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;margin-top:2px;letter-spacing:.05em;text-transform:uppercase}
-.badge-ok{background:var(--ok-bg);color:var(--ok-text)}
-.badge-ng{background:var(--ng-bg);color:var(--ng-text)}
-.badge-warn{background:var(--warn-bg);color:var(--warn-text)}
-.badge-check{background:var(--check-bg);color:var(--check-text)}
-.badge-loading{background:var(--bg2);color:var(--text2)}
-.rurl{font-size:13px;font-weight:500;flex:1;word-break:break-all;padding-top:3px}
+.rurl{font-size:13px;font-weight:500;flex:1;word-break:break-all;padding-top:2px;color:var(--text2)}
 .rurl a{color:var(--teal-dark);text-decoration:none}
 .rurl a:hover{text-decoration:underline}
-.rb{border-top:1.5px solid var(--border);padding:14px 20px}
-.diag-section{margin-top:16px;padding-top:14px;border-top:1.5px solid var(--border)}
-.diag-section-label{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
-.ss-section{margin-bottom:0}
+.rb{border-top:1.5px solid var(--border);padding:16px 20px}
+
+/* preview section */
 .ss-section-label{font-size:11px;font-weight:700;color:var(--teal-dark);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
-.issue-list{list-style:none;font-size:13px;color:var(--text2);line-height:1.9}
-.issue-list li{display:flex;gap:8px;align-items:flex-start}
-.issue-list li::before{content:"›";color:var(--teal);flex-shrink:0;font-weight:700;font-size:16px;line-height:1.4}
-.plat{display:inline-flex;align-items:center;gap:6px;font-size:11px;background:var(--teal-light);border:1px solid var(--border);border-radius:var(--radius);padding:5px 12px;margin-top:10px;color:var(--text2)}
-.plat a{color:var(--teal-dark);text-decoration:none;font-weight:600}
-.plat a:hover{text-decoration:underline}
 .ss-wrap{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);min-height:80px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text3);position:relative;overflow:hidden}
 .ss-wrap img{width:100%;display:block}
 .ss-badge{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.45);color:#fff;font-size:10px;padding:3px 8px;border-radius:4px}
-.ss-note{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.7}
+.ss-note{font-size:11px;color:var(--text3);margin-top:8px;line-height:1.7}
 .ss-note a{color:var(--teal-dark)}
+
+/* contact banner */
+.contact-banner{margin-top:16px;padding:14px 16px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);font-size:13px;color:var(--text2);line-height:1.8}
+.contact-banner strong{color:var(--text)}
+.contact-banner a{color:var(--teal-dark);font-weight:600;text-decoration:none}
+.contact-banner a:hover{text-decoration:underline}
+.faq-toggle{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--teal-dark);cursor:pointer;background:none;border:none;padding:0;margin-top:8px;text-decoration:underline}
+.faq-toggle .chevron{font-size:9px;transition:transform .2s}
+
+/* faq */
+.faq-body{margin-top:12px}
+.faq-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px;font-size:12px}
+.faq-card h4{font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.faq-card h4 i{color:var(--teal)}
+.faq-item{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.faq-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.faq-q{font-weight:700;color:var(--text2);margin-bottom:3px}
+.faq-a{color:var(--text3);line-height:1.7}
+.faq-code{background:#f0f0f0;border-radius:3px;padding:1px 5px;font-family:monospace;font-size:11px;color:#c0392b}
+
+/* loading */
 .loading-msg{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;color:var(--text2)}
 .loading-msg i{color:var(--teal)}
 
-/* FAQ section */
-.faq-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:16px}
-.faq-card h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px}
-.faq-card h3 i{color:var(--teal)}
-.faq-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-.faq-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
-.faq-q{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;display:flex;gap:8px}
-.faq-q::before{content:"Q.";color:var(--teal);flex-shrink:0;font-weight:700}
-.faq-a{font-size:12px;color:var(--text2);line-height:1.8;padding-left:20px}
-.faq-code{background:#f0f0f0;border-radius:4px;padding:2px 6px;font-family:monospace;font-size:11px;color:#c0392b}
-
-/* guide section */
+/* guide */
 .guide-card{background:linear-gradient(135deg,var(--teal-light),var(--bg2));border:1.5px solid var(--teal-mid);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:16px}
 .guide-card h3{font-size:14px;font-weight:700;color:var(--teal-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .guide-card p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:12px}
@@ -120,7 +104,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 <path d="M122.948 262.02C122.938 262.36 122.928 262.69 122.918 263.03C122.258 270.9 122.548 279.03 123.948 287.36C124.758 296.8 126.528 305.49 129.118 313.47C131.998 322.34 135.898 330.32 140.628 337.44C145.668 345.02 151.648 351.61 158.358 357.24C165.168 362.97 172.738 367.71 180.808 371.49C186.648 374.23 192.757 376.46 199.048 378.22C203.528 379.97 208.198 381.43 213.048 382.57C221.318 386.89 229.858 389.32 238.448 390.13C247.278 390.96 256.158 390.08 264.868 387.79C273.268 385.58 281.508 382.06 289.368 377.48C296.908 373.1 304.107 367.75 310.787 361.68C317.317 355.74 323.348 349.1 328.708 341.99C334.098 334.84 338.807 327.21 342.667 319.32C346.658 311.18 349.738 302.76 351.738 294.3C353.848 285.38 355.108 276.95 355.598 269.01C356.158 259.88 355.708 251.38 354.348 243.48C352.828 234.63 350.167 226.54 346.527 219.18C342.687 211.41 337.768 204.44 331.948 198.23C326.188 192.09 319.548 186.69 312.218 182C310.908 181.16 309.568 180.35 308.208 179.56C303.228 175.48 297.848 171.81 292.078 168.65C284.078 164.27 275.348 160.86 265.958 158.64C256.268 157.04 246.488 156.39 236.838 156.68C226.988 156.97 217.257 158.24 207.897 160.46C198.277 162.74 189.037 166.03 180.428 170.29C171.588 174.67 163.428 180.08 156.208 186.5C148.948 192.95 142.648 200.42 137.578 208.88C132.728 216.98 129.008 225.99 126.668 235.88C124.518 244.97 123.318 253.68 122.958 262.01L122.948 262.02Z" fill="#03DACC"/>
 <path d="M269.218 371.2C200.668 371.2 144.908 315.43 144.908 246.89C144.908 178.35 200.678 122.58 269.218 122.58C337.758 122.58 393.528 178.35 393.528 246.89C393.528 315.43 337.758 371.2 269.218 371.2ZM269.218 137.05C208.648 137.05 159.378 186.32 159.378 246.89C159.378 307.46 208.648 356.73 269.218 356.73C329.788 356.73 379.058 307.46 379.058 246.89C379.058 186.32 329.788 137.05 269.218 137.05Z" fill="#333333"/>
 <path d="M1078.31 226.52L1044.18 264.053L1082 318.17H1063.37L1033.59 275.834L1023.94 286.273V318.17H1006.56V181.884H1023.94V265.628L1059.54 226.52H1078.31Z" fill="#333333"/>
-<path d="M947.213 225.239C968.982 225.239 984.715 242.984 984.715 265.485V318.17H966.97V266.034C966.97 251.948 956.908 241.337 943.554 241.337C930.2 241.337 920.139 251.948 920.139 266.217V318.17H902.76V226.703H920.139V238.045C926.907 230.178 936.786 225.239 947.213 225.239Z" fill="#333333"/>
+<path d="M947.213 225.239C968.982 225.239 984.715 242.984 984.715 265.485V318.17H966.97V266.034C966.97 251.948 956.908 241.337 943.554 241.337C930.2 241.337 920.139 251.948 920.139 266.217V318.17H902.76V226.703H902.76V238.045C926.907 230.178 936.786 225.239 947.213 225.239Z" fill="#333333"/>
 <path d="M869.408 205.665C863.92 205.665 859.529 201.275 859.529 195.787C859.529 190.299 863.92 185.908 869.408 185.908C874.713 185.908 879.286 190.299 879.286 195.787C879.286 201.275 874.713 205.665 869.408 205.665ZM860.627 318.17V226.703H878.006V318.17H860.627Z" fill="#333333"/>
 <path d="M783.121 300.792H836.172V318.17H765.742V195.421H783.121V300.792Z" fill="#333333"/>
 <path d="M705.863 225.239C727.633 225.239 743.365 242.984 743.365 265.485V318.17H725.62V266.034C725.62 251.948 715.559 241.337 702.205 241.337C688.85 241.337 678.789 251.948 678.789 266.217V318.17H661.41V226.703H678.789V238.045C685.558 230.178 695.436 225.239 705.863 225.239Z" fill="#333333"/>
@@ -132,84 +116,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 
 <div class="hero">
   <h1>タグ<span>設置確認</span>ツール</h1>
-  <p>サイトURLを入力するだけで、ZenLinkスクリプトの設置状況を自動チェックします</p>
+  <p>サイトURLを入力すると、海外IPからの表示プレビューで設置状況を確認できます</p>
 </div>
 
 <div class="main">
 
-  <!-- URL入力 -->
-  <div class="section-title"><i class="fa-solid fa-magnifying-glass"></i> URLで確認する</div>
   <div class="input-card">
     <div class="input-row">
       <input type="text" id="urlInput" placeholder="https://your-shop.com" />
-      <button class="btn-check" id="checkBtn" onclick="runCheck()">確認する</button>
-    </div>
-
-    <!-- ソース貼り付け -->
-    <button class="paste-toggle" onclick="togglePaste()">
-      <i class="fa-solid fa-code"></i> URLで取得できない場合はページソースを貼り付けて確認
-    </button>
-    <div class="paste-area" id="pasteArea" style="display:none">
-      <textarea id="pasteInput" placeholder="ページのHTMLソースをここに貼り付けてください..."></textarea>
-      <div class="paste-hint">
-        <strong>ページソースの取得方法：</strong>
-        <ul class="paste-steps">
-          <li><strong>Chrome：</strong>確認したいページで右クリック →「ページのソースを表示」→ Ctrl+A で全選択 → Ctrl+C でコピー</li>
-          <li><strong>Edge：</strong>確認したいページで右クリック →「ページのソースの表示」→ Ctrl+A で全選択 → Ctrl+C でコピー</li>
-        </ul>
-      </div>
-      <button class="btn-paste-check" onclick="runPasteCheck()">
-        <i class="fa-solid fa-file-code"></i> ソースを解析する
+      <button class="btn-check" id="checkBtn" onclick="runCheck()">
+        <i class="fa-solid fa-magnifying-glass"></i> 確認する
       </button>
     </div>
   </div>
 
   <div class="results" id="results"></div>
 
-  <!-- よくある間違い（アコーディオン） -->
-  <div class="section-title accordion-toggle" style="margin-top:8px;cursor:pointer;user-select:none;" onclick="toggleFaq(this)">
-    <i class="fa-solid fa-triangle-exclamation"></i> よくある間違い
-    <i class="fa-solid fa-chevron-down accordion-icon" style="margin-left:auto;font-size:10px;color:var(--text3);transition:transform .25s;"></i>
-  </div>
-  <div class="faq-body" style="display:none">
-    <div class="faq-card">
-      <h3><i class="fa-solid fa-spell-check"></i> ① スペルミス（コードの誤入力）</h3>
-      <div class="faq-item">
-        <div class="faq-q">scriptタグ名の打ち間違い</div>
-        <div class="faq-a">
-          正しくは <span class="faq-code">&lt;script&gt;</span> ですが、<span class="faq-code">&lt;scrpt&gt;</span>・<span class="faq-code">&lt;sript&gt;</span>・<span class="faq-code">&lt;scirpt&gt;</span> などと入力されているケースがあります。<br>
-          コピーペーストで挿入することをおすすめします。
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">URLの打ち間違い</div>
-        <div class="faq-a">
-          正しいURLは <span class="faq-code">https://zen.one/analytics.js</span> です。<br>
-          <span class="faq-code">zen.one/analytics.com</span>・<span class="faq-code">zen.one/anlytics.js</span> などに変わっていないかご確認ください。
-        </div>
-      </div>
-    </div>
-    <div class="faq-card">
-      <h3><i class="fa-solid fa-location-dot"></i> ② 挿入場所の間違い</h3>
-      <div class="faq-item">
-        <div class="faq-q">正しい挿入場所は？</div>
-        <div class="faq-a">
-          <span class="faq-code">&lt;/head&gt;</span> タグの直前に挿入してください。<br>
-          <span class="faq-code">&lt;body&gt;</span> 内や、ページの途中に入れてしまうと正常に動作しない場合があります。
-        </div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">正しいコードの形式は？</div>
-        <div class="faq-a">
-          <span class="faq-code">&lt;script async src="https://zen.one/analytics.js"&gt;&lt;/script&gt;</span><br>
-          <span style="color:#c0392b">async</span> 属性が必要です。抜けていると表示速度に影響する場合があります。
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- カート別設置ガイド -->
-  <div class="section-title" style="margin-top:8px"><i class="fa-solid fa-book-open"></i> カートシステム別 設置ガイド</div>
+  <!-- カートシステム別設置ガイド -->
   <div class="guide-card">
     <h3><i class="fa-solid fa-store"></i> ご利用のカートシステムに合わせた設置手順</h3>
     <p>Shopify・ColorMe・BASE・futureshop・EC-CUBE など、カートシステムごとに設置方法が異なります。<br>下記のガイドページから、ご利用のシステムを選んで設置方法をご確認ください。</p>
@@ -225,158 +148,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 </div>
 
 <script>
-function toggleFaq(btn) {
-  const body = btn.nextElementSibling;
-  const icon = btn.querySelector('.accordion-icon');
-  const open = body.style.display !== 'none';
-  body.style.display = open ? 'none' : 'block';
-  icon.style.transform = open ? '' : 'rotate(180deg)';
-}
-
-function togglePaste() {
-  const area = document.getElementById('pasteArea');
-  area.style.display = area.style.display === 'block' ? 'none' : 'block';
-}
-
-function runPasteCheck() {
-  const source = document.getElementById('pasteInput').value.trim();
-  if (!source) { alert('ソースを貼り付けてください'); return; }
-  const platform = detectPlatformFromHtml(source);
-  const analysis = analyzeResult({
-    hasZenOne: source.includes('zen.one/analytics'),
-    scriptTags: [...source.matchAll(/<script[^>]*>/gi)].map(m=>m[0]).filter(s=>s.includes('analytics.js')),
-    dynamicMatches: [...source.matchAll(/["'](https:\/\/zen\.one\/analytics\.js[^"']*)['"]/gi)].map(m=>m[1]),
-    inHead: (source.match(/<head[\s\S]*?<\/head>/i)||[''])[0].includes('analytics.js'),
-    distFromHeadEnd: (() => { const hm=source.match(/<head[\s\S]*?<\/head>/i); if(!hm) return -1; return hm[0].lastIndexOf('</head>')-hm[0].lastIndexOf('analytics.js'); })(),
-    platform: platform,
-    wrongUrls: (() => {
-      const matches = source.match(/zen\.one\/analytics(?!\.js(?:[?"'\s<]|$))[^\s"'<>]*/gi);
-      return matches ? [...new Set(matches)] : [];
-    })(),
-    typos: [],
-    // ソース貼り付け時のfutureshop検知
-    futureshop: platform === 'futureshop',
-    hasZenOneInEncoded: source.includes('zen.one%2Fanalytics.js') || source.includes('zen.one/analytics.js'),
-  });
-  renderCard('（貼り付けソース）', analysis, platform, false);
-}
-
-function detectPlatformFromHtml(h) {
-  const hl = h.toLowerCase();
-  if (hl.includes('cdn.shopify.com')||hl.includes('myshopify.com')) return 'shopify';
-  if (hl.includes('shop-pro.jp')||hl.includes('colormeapp')||hl.includes('gmo-shop')) return 'colorme';
-  if (hl.includes('base.shop')||hl.includes('base-cdn.jp')||hl.includes('thebase.in')) return 'base';
-  if (hl.includes('itembox.cloud')||hl.includes('_fs.')||hl.includes('futureshop')) return 'futureshop';
-  if (hl.includes('ecforce')) return 'ecforce';
-  if (hl.includes('ochanoko')) return 'ochanoko';
-  if (hl.includes('makeshop')) return 'makeshop';
-  if (hl.includes('squarespace.com')) return 'square';
-  if (hl.includes('wix.com')||hl.includes('wixsite.com')) return 'wix';
-  if (hl.includes('eccube')||hl.includes('ec-cube')) return 'eccube';
-  if (hl.includes('aiship')) return 'aiship';
-  if (hl.includes('wp-content')||hl.includes('wp-includes')) return 'wordpress';
-  return null;
-}
-</script>
-
-<script>
 const PROXY_API = 'https://zenlink-proxy.office-2bc.workers.dev';
-
-const PLATFORMS = {
-  shopify:    {name:'Shopify',         guide:'https://support.zen.one/zenlink-guide/tag/shopify'},
-  base:       {name:'BASE',            guide:'https://support.zen.one/zenlink-guide/tag/base'},
-  ecforce:    {name:'ecforce',         guide:'https://support.zen.one/zenlink-guide/tag/ecforce'},
-  ochanoko:   {name:'おちゃのこネット', guide:'https://support.zen.one/zenlink-guide/tag/ochanoko'},
-  makeshop:   {name:'Makeshop',        guide:'https://support.zen.one/zenlink-guide/tag/makeshop'},
-  futureshop: {name:'futureshop',      guide:'https://support.zen.one/zenlink-guide/tag/futureshop'},
-  colorme:    {name:'ColorMe',         guide:'https://support.zen.one/zenlink-guide/tag/colorme'},
-  square:     {name:'Square',          guide:'https://support.zen.one/zenlink-guide/tag/square'},
-  wix:        {name:'WIX',             guide:'https://support.zen.one/zenlink-guide/tag/wix'},
-  eccube:     {name:'EC-CUBE',         guide:'https://support.zen.one/zenlink-guide/tag/ec-cube'},
-  estore:     {name:'Eストアー',       guide:'https://support.zen.one/zenlink-guide/tag/estore'},
-  wordpress:  {name:'WordPress',       guide:'https://support.zen.one/zenlink-guide/tag/wordpress'},
-  aiship:     {name:'aiship',          guide:'https://support.zen.one/zenlink-guide/tag/aiship'},
-};
-
-async function analyzeUrl(url) {
-  const apiUrl = PROXY_API + '?url=' + encodeURIComponent(url);
-  const resp = await fetch(apiUrl, {signal: AbortSignal.timeout(30000)});
-  if (!resp.ok) throw new Error('プロキシエラー: ' + resp.status);
-  const data = await resp.json();
-  if (data.error) throw new Error(data.error);
-  return data;
-}
-
-function analyzeResult(data) {
-  const issues = [];
-  let status = 'ok';
-
-  // ColorMeはアプリ連携方式
-  if (data.colorme) {
-    issues.push('ColorMeショップはアプリ連携でZenLinkを設置するため、HTMLソース上での自動検出はできません。');
-    issues.push('上のプレビューでポップアップが表示されていれば設置済みです。表示されない場合はColorMeの管理画面でZenLinkアプリのインストール状況をご確認ください。');
-    return {status: 'check', issues};
-  }
-
-  // futureshop
-  if (data.futureshop) {
-    if (data.hasZenOneInEncoded) {
-      issues.push('futureshopのトラッキングタグ内にZenLinkスクリプトが検出されました。');
-      issues.push('上のプレビューでポップアップが表示されていれば設置済みです。');
-    } else {
-      issues.push('futureshopではトラッキングタグ内にスクリプトを埋め込むため、自動検出が困難です。');
-      issues.push('上のプレビューでポップアップが表示されていれば設置済みです。表示されない場合は管理画面のトラッキングタグ設定をご確認ください。');
-    }
-    return {status: 'check', issues};
-  }
-
-  if (!data.hasZenOne) {
-    issues.push('HTMLソース上でスクリプトタグを検出できませんでした。');
-    issues.push('ただし上のプレビューでポップアップが表示されていれば実際には設置済みです（動的挿入等）。表示されない場合のみ設置状況をご確認ください。');
-    return {status: 'ng', issues};
-  }
-
-  const targetTags = data.scriptTags || [];
-
-  if (targetTags.length === 0) {
-    issues.push('zen.one/analytics.js への参照は確認できましたが、scriptタグの形式が標準と異なります。上のプレビューで動作確認してください。');
-    status = 'warn';
-  }
-
-  targetTags.forEach(tag => {
-    if (!tag.includes('async')) {
-      issues.push('async 属性がありません。動作には影響しませんが、ページ表示速度の観点から推奨します。');
-      if (status === 'ok') status = 'warn';
-    }
-    const m = tag.match(/src\s*=\s*["']([^"']+)["']/i);
-    if (m && !m[1].startsWith('https://zen.one/analytics.js')) {
-      issues.push(`src URL が正しくありません: ${m[1]}（正しくは https://zen.one/analytics.js）`);
-      if (status === 'ok') status = 'warn';
-    }
-  });
-
-  if (!data.inHead) {
-    issues.push('スクリプトが &lt;head&gt; 外に挿入されています。プラットフォームによっては正常な場合もあります。上のプレビューで動作確認してください。');
-    if (status === 'ok') status = 'warn';
-  }
-
-  if (data.wrongUrls && data.wrongUrls.length > 0) {
-    data.wrongUrls.forEach(u => {
-      issues.push(`URLに誤りがある可能性があります: ${u}（正しくは https://zen.one/analytics.js）`);
-    });
-    status = 'ng';
-  }
-
-  if (data.typos && data.typos.length > 0) {
-    data.typos.forEach(t => {
-      issues.push(`コードに誤りがある可能性があります: ${t}`);
-    });
-    if (status === 'ok') status = 'ng';
-  }
-
-  if (status === 'ok') issues.push('スクリプトタグが推奨形式で確認できました。上のプレビューでポップアップの表示もあわせてご確認ください。');
-  return {status, issues};
-}
 
 function cid(url) {
   let h = 0;
@@ -384,53 +156,61 @@ function cid(url) {
   return 'c' + Math.abs(h);
 }
 
+function toggleFaq(btn) {
+  const body = btn.parentElement.nextElementSibling;
+  const chevron = btn.querySelector('.chevron');
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  chevron.style.transform = open ? '' : 'rotate(180deg)';
+}
 
-function renderCard(url, analysis, platform, showSS = true) {
+function renderCard(url, ssUrl) {
   const id = cid(url);
-  const platInfo = platform ? PLATFORMS[platform] : null;
-
-  // バッジ：NG/OK表記をなくし中立的に
-  const bc = analysis.status === 'ok' ? 'badge-ok' :
-             analysis.status === 'ng' ? 'badge-ng' :
-             analysis.status === 'check' ? 'badge-check' : 'badge-warn';
-  const bl = analysis.status === 'ok'    ? '✓ スクリプト確認' :
-             analysis.status === 'ng'    ? '△ 自動検出できませんでした' :
-             analysis.status === 'check' ? '— 手動確認が必要です' :
-                                           '△ 形式に注意があります';
-
-  const issuesHtml = analysis.issues.map(i => `<li>${i}</li>`).join('');
-  const platHtml = platInfo
-    ? `<div class="plat"><i class="fa-solid fa-laptop"></i>&nbsp;${platInfo.name}&nbsp;·&nbsp;<a href="${platInfo.guide}" target="_blank">タグ設置ガイド <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px"></i></a></div>`
-    : '';
   const ssId = id + '_ss';
-
-  const ssSection = showSS ? `
-    <div class="ss-section">
-      <div class="ss-section-label"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー <span style="font-weight:400;color:var(--text3);font-size:10px;margin-left:4px">米国サーバー経由</span></div>
-      <div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>
-      <p class="ss-note">
-        <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>ポップアップが表示されていれば設置済みです。確認まで数秒かかる場合があります。<br>
-        ZenLinkのポップアップ除外設定を行っている場合や特定条件下では表示されないことがあります。実際のブラウザ確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
-      </p>
-    </div>
-  ` : `
-    <div class="ss-section">
-      <div class="ss-section-label"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー</div>
-      <p style="font-size:13px;color:var(--text3);padding:4px 0">URLチェックモードでのみ利用できます。</p>
-    </div>
-  `;
 
   const cardHtml = `<div class="result-card" id="${id}">
     <div class="rh">
-      <span class="badge ${bc}">${bl}</span>
       <div class="rurl"><a href="${url}" target="_blank">${url}</a></div>
     </div>
     <div class="rb">
-      ${ssSection}
-      <div class="diag-section">
-        <div class="diag-section-label"><i class="fa-solid fa-list-check"></i>&nbsp;自動診断の詳細</div>
-        <ul class="issue-list">${issuesHtml}</ul>
-        ${platHtml}
+      <div class="ss-section-label"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー <span style="font-weight:400;color:var(--text3);font-size:10px;margin-left:4px">米国サーバー経由</span></div>
+      <div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>
+      <p class="ss-note">
+        <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>ZenLinkのポップアップが表示されていれば設置済みです。確認まで数秒かかります。<br>
+        実際のブラウザでの確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
+      </p>
+      <div class="contact-banner">
+        <strong>バナーが表示されない場合は</strong><br>
+        <a href="mailto:support@zen.one"><i class="fa-solid fa-envelope" style="font-size:11px;margin-right:4px"></i>support@zen.one</a> までお問い合わせください。
+        <div style="margin-top:8px">
+          <button class="faq-toggle" onclick="toggleFaq(this)">
+            <i class="fa-solid fa-chevron-down chevron"></i> よくある設置ミスを確認する
+          </button>
+        </div>
+        <div class="faq-body" style="display:none">
+          <div class="faq-card" style="margin-top:4px">
+            <h4><i class="fa-solid fa-spell-check"></i> スペルミス</h4>
+            <div class="faq-item">
+              <div class="faq-q">scriptタグ名の打ち間違い</div>
+              <div class="faq-a">正しくは <span class="faq-code">&lt;script&gt;</span> です。<span class="faq-code">&lt;scrpt&gt;</span>・<span class="faq-code">&lt;scirpt&gt;</span> などになっていないかご確認ください。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">URLの打ち間違い</div>
+              <div class="faq-a">正しいURLは <span class="faq-code">https://zen.one/analytics.js</span> です。<span class="faq-code">.com</span> になっていたり、スペルが変わっていないかご確認ください。</div>
+            </div>
+          </div>
+          <div class="faq-card">
+            <h4><i class="fa-solid fa-location-dot"></i> 挿入場所の間違い</h4>
+            <div class="faq-item">
+              <div class="faq-q">正しい挿入場所</div>
+              <div class="faq-a"><span class="faq-code">&lt;/head&gt;</span> タグの直前に挿入してください。<span class="faq-code">&lt;body&gt;</span> 内に入れると正常に動作しない場合があります。</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">正しいコードの形式</div>
+              <div class="faq-a"><span class="faq-code">&lt;script async src="https://zen.one/analytics.js"&gt;&lt;/script&gt;</span><br><span class="faq-code">async</span> 属性も忘れずに。</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>`;
@@ -440,9 +220,7 @@ function renderCard(url, analysis, platform, showSS = true) {
   else document.getElementById('results').insertAdjacentHTML('afterbegin', cardHtml);
 
   // スクリーンショット読み込み
-  if (!showSS) return;
   const wrap = document.getElementById(ssId);
-  if (!wrap) return;
   const img = new Image();
   img.onload = () => {
     wrap.innerHTML = '';
@@ -455,7 +233,7 @@ function renderCard(url, analysis, platform, showSS = true) {
     wrap.appendChild(badge);
   };
   img.onerror = () => {
-    wrap.innerHTML = '<span style="color:var(--warn-text);font-size:12px"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;スクリーンショットの取得に失敗しました</span>';
+    wrap.innerHTML = '<span style="font-size:12px;color:#c0392b"><i class="fa-solid fa-triangle-exclamation"></i>&nbsp;プレビューの取得に失敗しました。しばらく経ってから再度お試しください。</span>';
   };
   img.src = `${PROXY_API}?mode=screenshot&url=${encodeURIComponent(url)}`;
 }
@@ -471,36 +249,15 @@ async function runCheck() {
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 確認中...';
 
   const id = cid(url);
-  const results = document.getElementById('results');
-
-  const placeholder = `<div class="result-card" id="${id}">
-    <div class="rh">
-      <span class="badge badge-loading"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;確認中</span>
-      <div class="rurl"><a href="${url}" target="_blank">${url}</a></div>
-    </div>
-    <div style="padding:4px 20px 16px">
-      <div class="loading-msg"><i class="fa-solid fa-circle-notch fa-spin"></i>サイト情報を取得しています。しばらくお待ちください...</div>
-    </div>
-  </div>`;
   const existing = document.getElementById(id);
+  const placeholder = `<div class="result-card" id="${id}">
+    <div class="rh"><div class="rurl"><a href="${url}" target="_blank">${url}</a></div></div>
+    <div class="rb"><div class="loading-msg"><i class="fa-solid fa-circle-notch fa-spin"></i>プレビューを取得しています...</div></div>
+  </div>`;
   if (existing) existing.outerHTML = placeholder;
-  else results.insertAdjacentHTML('afterbegin', placeholder);
+  else document.getElementById('results').insertAdjacentHTML('afterbegin', placeholder);
 
-  try {
-    const data = await analyzeUrl(url);
-    const analysis = analyzeResult(data);
-    const platform = data.platform;
-    renderCard(url, analysis, platform);
-  } catch(e) {
-    const el = document.getElementById(id);
-    if (el) el.outerHTML = `<div class="result-card" id="${id}">
-      <div class="rh">
-        <span class="badge badge-ng">エラー</span>
-        <div class="rurl"><a href="${url}" target="_blank">${url}</a></div>
-      </div>
-      <div class="rb"><ul class="issue-list"><li>${e.message || 'ページの取得に失敗しました。URLを確認してください。'}</li></ul></div>
-    </div>`;
-  }
+  renderCard(url);
 
   btn.disabled = false;
   btn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> 確認する';
