@@ -149,7 +149,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
     <button class="paste-toggle" onclick="togglePaste()">
       <i class="fa-solid fa-code"></i> URLで取得できない場合はページソースを貼り付けて確認
     </button>
-    <div class="paste-area" id="pasteArea">
+    <div class="paste-area" id="pasteArea" style="display:none">
       <textarea id="pasteInput" placeholder="ページのHTMLソースをここに貼り付けてください..."></textarea>
       <div class="paste-hint">
         <strong>ページソースの取得方法：</strong>
@@ -233,8 +233,9 @@ function toggleFaq(btn) {
   icon.style.transform = open ? '' : 'rotate(180deg)';
 }
 
+function togglePaste() {
   const area = document.getElementById('pasteArea');
-  area.classList.toggle('open');
+  area.style.display = area.style.display === 'block' ? 'none' : 'block';
 }
 
 function runPasteCheck() {
