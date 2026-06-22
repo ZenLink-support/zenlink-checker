@@ -205,6 +205,22 @@ function analyzeResult(data) {
     // head内であれば位置は問わず正常扱い
   }
 
+  // 誤ったURLの検出（zen.one/analytics.js 以外）
+  if (data.wrongUrls && data.wrongUrls.length > 0) {
+    data.wrongUrls.forEach(u => {
+      issues.push(`URLが正しくありません: ${u}（正しいURL: https://zen.one/analytics.js）`);
+    });
+    status = 'ng';
+  }
+
+  // 打ち間違い検出
+  if (data.typos && data.typos.length > 0) {
+    data.typos.forEach(t => {
+      issues.push(`コードに誤りがある可能性があります: ${t}`);
+    });
+    if (status === 'ok') status = 'ng';
+  }
+
   if (status === 'ok') issues.push('正常: 推奨位置にスクリプトタグが確認できました');
   return {status, issues};
 }
