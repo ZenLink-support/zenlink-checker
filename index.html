@@ -8,39 +8,31 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --teal:#03dacc;
-  --teal-dark:#02b8ac;
-  --teal-light:#e6faf9;
-  --teal-mid:#b2f0ed;
+  --teal:#03dacc;--teal-dark:#02b8ac;--teal-light:#e6faf9;--teal-mid:#b2f0ed;
   --text:#1a1a1a;--text2:#555;--text3:#999;
   --bg:#fff;--bg2:#f7fefe;--bg3:#f0fcfc;
   --border:#e0f5f4;--border2:#03dacc;
   --ok-bg:#e6faf9;--ok-text:#028a82;
   --ng-bg:#fff0f0;--ng-text:#c0392b;
   --warn-bg:#fffbea;--warn-text:#b07a00;
+  --check-bg:#e8f4ff;--check-text:#2272c3;
   --radius:10px;--radius-lg:18px;
   --shadow:0 2px 16px rgba(3,218,204,0.1);
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}
-
-/* header */
-.header{background:#fff;border-bottom:1.5px solid var(--border);padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.header{background:#fff;border-bottom:1.5px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
 .header-right{font-size:12px;color:var(--text3)}
 .header-right a{color:var(--teal);text-decoration:none;font-weight:600}
-
-/* hero */
-.hero{background:linear-gradient(135deg,#f0fcfc 0%,#e8faf9 50%,#f7fefe 100%);padding:44px 24px 40px;text-align:center;border-bottom:1px solid var(--border)}
-.hero h1{font-size:24px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.02em}
+.hero{background:linear-gradient(135deg,#f0fcfc 0%,#e8faf9 50%,#f7fefe 100%);padding:36px 24px 32px;text-align:center;border-bottom:1px solid var(--border)}
+.hero h1{font-size:22px;font-weight:700;color:var(--text);margin-bottom:8px;letter-spacing:-.02em}
 .hero h1 span{color:var(--teal)}
-.hero p{font-size:14px;color:var(--text2);line-height:1.7;max-width:480px;margin:0 auto}
-
-/* main */
-.main{max-width:680px;margin:0 auto;padding:32px 20px 80px}
+.hero p{font-size:13px;color:var(--text2);line-height:1.7;max-width:480px;margin:0 auto}
+.main{max-width:720px;margin:0 auto;padding:28px 20px 80px}
+.section-title{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px}
 
 /* input */
-.input-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:24px;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
+.input-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px;margin-bottom:16px;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
 .input-card:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px rgba(3,218,204,0.1)}
-.input-label{font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
 .input-row{display:flex;gap:10px}
 .input-row input{flex:1;height:46px;background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius);padding:0 14px;font-size:15px;color:var(--text);outline:none;transition:border-color .15s}
 .input-row input::placeholder{color:var(--text3)}
@@ -50,8 +42,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 .btn-check:active{transform:scale(.98)}
 .btn-check:disabled{opacity:.4;cursor:not-allowed}
 
+/* source paste */
+.paste-toggle{font-size:12px;color:var(--teal);cursor:pointer;text-decoration:underline;display:inline-flex;align-items:center;gap:4px;margin-top:10px;background:none;border:none;padding:0}
+.paste-area{display:none;margin-top:12px}
+.paste-area.open{display:block}
+.paste-area textarea{width:100%;height:120px;border:1.5px solid var(--border);border-radius:var(--radius);padding:10px 12px;font-size:12px;font-family:monospace;color:var(--text);outline:none;resize:vertical;background:var(--bg2)}
+.paste-area textarea:focus{border-color:var(--teal)}
+.paste-hint{font-size:11px;color:var(--text3);margin-top:6px;line-height:1.7}
+.paste-hint strong{color:var(--text2)}
+.paste-steps{margin-top:6px;display:flex;flex-direction:column;gap:4px}
+.paste-steps li{list-style:none;font-size:11px;color:var(--text3);display:flex;gap:6px}
+.paste-steps li::before{content:"›";color:var(--teal);font-weight:700;flex-shrink:0}
+.btn-paste-check{margin-top:10px;height:38px;border:none;border-radius:var(--radius);background:var(--bg3);color:var(--teal-dark);font-size:13px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:0 16px;border:1.5px solid var(--teal-mid);transition:background .15s}
+.btn-paste-check:hover{background:var(--teal-light)}
+
 /* results */
-.results{display:flex;flex-direction:column;gap:14px}
+.results{display:flex;flex-direction:column;gap:14px;margin-bottom:24px}
 .result-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);transition:border-color .2s}
 .result-card:hover{border-color:var(--teal-mid)}
 .rh{display:flex;align-items:flex-start;gap:10px;padding:16px 20px 14px}
@@ -59,7 +65,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 .badge-ok{background:var(--ok-bg);color:var(--ok-text)}
 .badge-ng{background:var(--ng-bg);color:var(--ng-text)}
 .badge-warn{background:var(--warn-bg);color:var(--warn-text)}
-.badge-check{background:#e8f4ff;color:#2272c3;border:1px solid #b3d4f5}
+.badge-check{background:var(--check-bg);color:var(--check-text)}
 .badge-loading{background:var(--bg2);color:var(--text2)}
 .rurl{font-size:13px;font-weight:500;flex:1;word-break:break-all;padding-top:3px}
 .rurl a{color:var(--teal-dark);text-decoration:none}
@@ -84,8 +90,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 .loading-msg{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;color:var(--text2)}
 .loading-msg i{color:var(--teal)}
 
+/* FAQ section */
+.faq-card{background:var(--bg2);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:16px}
+.faq-card h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.faq-card h3 i{color:var(--teal)}
+.faq-item{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.faq-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.faq-q{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;display:flex;gap:8px}
+.faq-q::before{content:"Q.";color:var(--teal);flex-shrink:0;font-weight:700}
+.faq-a{font-size:12px;color:var(--text2);line-height:1.8;padding-left:20px}
+.faq-code{background:#f0f0f0;border-radius:4px;padding:2px 6px;font-family:monospace;font-size:11px;color:#c0392b}
+
+/* guide section */
+.guide-card{background:linear-gradient(135deg,var(--teal-light),var(--bg2));border:1.5px solid var(--teal-mid);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:16px}
+.guide-card h3{font-size:14px;font-weight:700;color:var(--teal-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.guide-card p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:12px}
+.guide-link-btn{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:#fff;border-radius:var(--radius);padding:9px 18px;font-size:13px;font-weight:700;text-decoration:none;transition:background .15s}
+.guide-link-btn:hover{background:var(--teal-dark)}
+
 /* footer */
-.footer{margin-top:48px;padding:24px 0;border-top:1.5px solid var(--border);text-align:center;font-size:12px;color:var(--text3)}
+.footer{margin-top:20px;padding:20px 0;border-top:1.5px solid var(--border);text-align:center;font-size:12px;color:var(--text3)}
 .footer a{color:var(--teal-dark);text-decoration:none;font-weight:600}
 .footer a:hover{text-decoration:underline}
 </style>
@@ -113,23 +137,130 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 </div>
 
 <div class="main">
+
+  <!-- URL入力 -->
+  <div class="section-title"><i class="fa-solid fa-magnifying-glass"></i> URLで確認する</div>
   <div class="input-card">
-    <div class="input-label"><i class="fa-solid fa-magnifying-glass" style="margin-right:5px"></i>チェックするURL</div>
     <div class="input-row">
       <input type="text" id="urlInput" placeholder="https://your-shop.com" />
-      <button class="btn-check" id="checkBtn" onclick="runCheck()">
-        確認する
+      <button class="btn-check" id="checkBtn" onclick="runCheck()">確認する</button>
+    </div>
+
+    <!-- ソース貼り付け -->
+    <button class="paste-toggle" onclick="togglePaste()">
+      <i class="fa-solid fa-code"></i> URLで取得できない場合はページソースを貼り付けて確認
+    </button>
+    <div class="paste-area" id="pasteArea">
+      <textarea id="pasteInput" placeholder="ページのHTMLソースをここに貼り付けてください..."></textarea>
+      <div class="paste-hint">
+        <strong>ページソースの取得方法：</strong>
+        <ul class="paste-steps">
+          <li><strong>Chrome：</strong>確認したいページで右クリック →「ページのソースを表示」→ Ctrl+A で全選択 → Ctrl+C でコピー</li>
+          <li><strong>Edge：</strong>確認したいページで右クリック →「ページのソースの表示」→ Ctrl+A で全選択 → Ctrl+C でコピー</li>
+        </ul>
+      </div>
+      <button class="btn-paste-check" onclick="runPasteCheck()">
+        <i class="fa-solid fa-file-code"></i> ソースを解析する
       </button>
     </div>
   </div>
 
   <div class="results" id="results"></div>
 
+  <!-- よくある間違い -->
+  <div class="section-title" style="margin-top:8px"><i class="fa-solid fa-triangle-exclamation"></i> よくある間違い</div>
+  <div class="faq-card">
+    <h3><i class="fa-solid fa-spell-check"></i> ① スペルミス（コードの誤入力）</h3>
+    <div class="faq-item">
+      <div class="faq-q">scriptタグ名の打ち間違い</div>
+      <div class="faq-a">
+        正しくは <span class="faq-code">&lt;script&gt;</span> ですが、<span class="faq-code">&lt;scrpt&gt;</span>・<span class="faq-code">&lt;sript&gt;</span>・<span class="faq-code">&lt;scirpt&gt;</span> などと入力されているケースがあります。<br>
+        コピーペーストで挿入することをおすすめします。
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">URLの打ち間違い</div>
+      <div class="faq-a">
+        正しいURLは <span class="faq-code">https://zen.one/analytics.js</span> です。<br>
+        <span class="faq-code">zen.one/analytics.com</span>・<span class="faq-code">zen.one/anlytics.js</span> などに変わっていないかご確認ください。
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <h3><i class="fa-solid fa-location-dot"></i> ② 挿入場所の間違い</h3>
+    <div class="faq-item">
+      <div class="faq-q">正しい挿入場所は？</div>
+      <div class="faq-a">
+        <span class="faq-code">&lt;/head&gt;</span> タグの直前に挿入してください。<br>
+        <span class="faq-code">&lt;body&gt;</span> 内や、ページの途中に入れてしまうと正常に動作しない場合があります。
+      </div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">正しいコードの形式は？</div>
+      <div class="faq-a">
+        <span class="faq-code">&lt;script async src="https://zen.one/analytics.js"&gt;&lt;/script&gt;</span><br>
+        <span style="color:#c0392b">async</span> 属性が必要です。抜けていると表示速度に影響する場合があります。
+      </div>
+    </div>
+  </div>
+
+  <!-- カート別設置ガイド -->
+  <div class="section-title" style="margin-top:8px"><i class="fa-solid fa-book-open"></i> カートシステム別 設置ガイド</div>
+  <div class="guide-card">
+    <h3><i class="fa-solid fa-store"></i> ご利用のカートシステムに合わせた設置手順</h3>
+    <p>Shopify・ColorMe・BASE・futureshop・EC-CUBE など、カートシステムごとに設置方法が異なります。<br>下記のガイドページから、ご利用のシステムを選んで設置方法をご確認ください。</p>
+    <a href="https://support.zen.one/zenlink-guide" target="_blank" class="guide-link-btn">
+      <i class="fa-solid fa-arrow-up-right-from-square"></i> カートシステム別 設置ガイドを見る
+    </a>
+  </div>
+
   <div class="footer">
     ご不明な点はお気軽にご連絡ください &nbsp;·&nbsp;
     <a href="mailto:support@zen.one"><i class="fa-solid fa-envelope" style="font-size:11px;margin-right:4px"></i>support@zen.one</a>
   </div>
 </div>
+
+<script>
+function togglePaste() {
+  const area = document.getElementById('pasteArea');
+  area.classList.toggle('open');
+}
+
+function runPasteCheck() {
+  const source = document.getElementById('pasteInput').value.trim();
+  if (!source) { alert('ソースを貼り付けてください'); return; }
+  const analysis = analyzeResult({
+    hasZenOne: source.includes('zen.one/analytics'),
+    scriptTags: [...source.matchAll(/<script[^>]*>/gi)].map(m=>m[0]).filter(s=>s.includes('analytics.js')),
+    dynamicMatches: [...source.matchAll(/["'](https:\/\/zen\.one\/analytics\.js[^"']*)['"]/gi)].map(m=>m[1]),
+    inHead: (source.match(/<head[\s\S]*?<\/head>/i)||[''])[0].includes('analytics.js'),
+    distFromHeadEnd: (() => { const hm=source.match(/<head[\s\S]*?<\/head>/i); if(!hm) return -1; return hm[0].lastIndexOf('</head>')-hm[0].lastIndexOf('analytics.js'); })(),
+    platform: detectPlatformFromHtml(source),
+    wrongUrls: (source.match(/zen\.one\/analytics(?!\.js)[^\s"'<>]*/gi)||[]),
+    typos: [],
+  });
+  const platform = detectPlatformFromHtml(source);
+  renderCard('（貼り付けソース）', analysis, platform, false);
+}
+
+function detectPlatformFromHtml(h) {
+  const hl = h.toLowerCase();
+  if (hl.includes('cdn.shopify.com')||hl.includes('myshopify.com')) return 'shopify';
+  if (hl.includes('shop-pro.jp')||hl.includes('colormeapp')||hl.includes('gmo-shop')) return 'colorme';
+  if (hl.includes('base.shop')||hl.includes('base-cdn.jp')||hl.includes('thebase.in')) return 'base';
+  if (hl.includes('itembox.cloud')||hl.includes('_fs.')||hl.includes('futureshop')) return 'futureshop';
+  if (hl.includes('ecforce')) return 'ecforce';
+  if (hl.includes('ochanoko')) return 'ochanoko';
+  if (hl.includes('makeshop')) return 'makeshop';
+  if (hl.includes('squarespace.com')) return 'square';
+  if (hl.includes('wix.com')||hl.includes('wixsite.com')) return 'wix';
+  if (hl.includes('eccube')||hl.includes('ec-cube')) return 'eccube';
+  if (hl.includes('aiship')) return 'aiship';
+  if (hl.includes('wp-content')||hl.includes('wp-includes')) return 'wordpress';
+  return null;
+}
+</script>
 
 <script>
 const TARGET_SCRIPT = 'https://zen.one/analytics.js';
@@ -237,7 +368,7 @@ function switchTab(id, idx) {
   card.querySelectorAll('.tab-pane').forEach((p, i) => p.classList.toggle('active', i === idx));
 }
 
-function renderCard(url, analysis, platform) {
+function renderCard(url, analysis, platform, showSS = true) {
   const id = cid(url);
   const platInfo = platform ? PLATFORMS[platform] : null;
   const bc = analysis.status === 'ok' ? 'badge-ok' : analysis.status === 'ng' ? 'badge-ng' : analysis.status === 'check' ? 'badge-check' : 'badge-warn';
@@ -263,7 +394,7 @@ function renderCard(url, analysis, platform) {
         ${platHtml}
       </div>
       <div class="tab-pane" id="${id}_p1">
-        <div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>
+        ${showSS ? `<div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>` : '<p style="font-size:13px;color:var(--text3);padding:8px 0">URLチェックモードでのみ利用できます。</p>'}
         <p class="ss-note">
           <i class="fa-solid fa-circle-info" style="color:var(--info-text);margin-right:4px"></i>確認まで数秒かかる場合があります。しばらくお待ちください。<br>
           米国サーバー経由でのレンダリング表示です。ZenLinkのポップアップ除外設定を行っている場合や、特定条件下では表示されないことがあります。<br>
