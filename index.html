@@ -164,9 +164,17 @@ function toggleFaq(btn) {
   chevron.style.transform = open ? '' : 'rotate(180deg)';
 }
 
-function renderCard(url, ssUrl) {
+function renderCard(url, platform) {
   const id = cid(url);
   const ssId = id + '_ss';
+
+  const colormeNote = platform === 'colorme' ? `
+    <div style="margin-top:10px;padding:10px 14px;background:var(--teal-light);border:1.5px solid var(--teal-mid);border-radius:var(--radius);font-size:12px;color:var(--text2);line-height:1.7;">
+      <i class="fa-solid fa-circle-info" style="color:var(--teal-dark);margin-right:5px"></i>
+      <strong>カラーミーショップをご利用の場合</strong><br>
+      カラーミーショップには「海外販売代行機能」があり、ZenLink for カラーミーショップ以外の方法でバナーが表示されることがあります。ZenLink for カラーミーショップの利用状況はカラーミーショップの管理画面からご確認ください。
+    </div>
+  ` : '';
 
   const cardHtml = `<div class="result-card" id="${id}">
     <div class="rh">
@@ -177,8 +185,9 @@ function renderCard(url, ssUrl) {
       <div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>
       <p class="ss-note">
         <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>ZenLinkのポップアップが表示されていれば設置済みです。確認まで数秒かかります。<br>
-        実際のブラウザでの確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
+        ※ ZenLinkのポップアップ除外設定が使用されている場合は表示されないことがあります。実際のブラウザでの確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
       </p>
+      ${colormeNote}
       <div class="contact-banner">
         <strong>バナーが表示されない場合は</strong><br>
         <a href="mailto:support@zen.one"><i class="fa-solid fa-envelope" style="font-size:11px;margin-right:4px"></i>support@zen.one</a> までお問い合わせください。
@@ -257,7 +266,17 @@ async function runCheck() {
   if (existing) existing.outerHTML = placeholder;
   else document.getElementById('results').insertAdjacentHTML('afterbegin', placeholder);
 
-  renderCard(url);
+  // Workerからplatformを取得してrenderCardに渡す
+  let platform = null;
+  try {
+    const resp = await fetch(`${PROXY_API}?url=${encodeURIComponent(url)}`, {signal: AbortSignal.timeout(15000)});
+    if (resp.ok) {
+      const data = await resp.json();
+      platform = data.platform || null;
+    }
+  } catch(e) { /* platform不明のままrenderCard */ }
+
+  renderCard(url, platform);
 
   btn.disabled = false;
   btn.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i> 確認する';
