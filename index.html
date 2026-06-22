@@ -71,11 +71,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 .rurl a{color:var(--teal-dark);text-decoration:none}
 .rurl a:hover{text-decoration:underline}
 .rb{border-top:1.5px solid var(--border);padding:14px 20px}
-.tabs{display:flex;border-bottom:1.5px solid var(--border);margin-bottom:14px}
-.tab{font-size:12px;padding:7px 14px;cursor:pointer;color:var(--text3);border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;border-radius:0;height:auto;transition:color .1s;font-weight:500}
-.tab:hover{color:var(--text)}
-.tab.active{color:var(--teal-dark);border-bottom-color:var(--teal);font-weight:700}
-.tab-pane{display:none}.tab-pane.active{display:block}
+.diag-section{margin-bottom:0}
+.diag-section-label{font-size:11px;font-weight:700;color:var(--teal-dark);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.ss-section{margin-top:16px;padding-top:14px;border-top:1.5px solid var(--border)}
+.ss-section-label{font-size:11px;font-weight:700;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
 .issue-list{list-style:none;font-size:13px;color:var(--text2);line-height:1.9}
 .issue-list li{display:flex;gap:8px;align-items:flex-start}
 .issue-list li::before{content:"›";color:var(--teal);flex-shrink:0;font-weight:700;font-size:16px;line-height:1.4}
@@ -167,40 +166,44 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 
   <div class="results" id="results"></div>
 
-  <!-- よくある間違い -->
-  <div class="section-title" style="margin-top:8px"><i class="fa-solid fa-triangle-exclamation"></i> よくある間違い</div>
-  <div class="faq-card">
-    <h3><i class="fa-solid fa-spell-check"></i> ① スペルミス（コードの誤入力）</h3>
-    <div class="faq-item">
-      <div class="faq-q">scriptタグ名の打ち間違い</div>
-      <div class="faq-a">
-        正しくは <span class="faq-code">&lt;script&gt;</span> ですが、<span class="faq-code">&lt;scrpt&gt;</span>・<span class="faq-code">&lt;sript&gt;</span>・<span class="faq-code">&lt;scirpt&gt;</span> などと入力されているケースがあります。<br>
-        コピーペーストで挿入することをおすすめします。
+  <!-- よくある間違い（アコーディオン） -->
+  <button class="section-title accordion-toggle" style="margin-top:8px;width:100%;background:none;border:none;cursor:pointer;text-align:left;padding:0;" onclick="toggleFaq(this)">
+    <i class="fa-solid fa-triangle-exclamation"></i> よくある間違い
+    <i class="fa-solid fa-chevron-down accordion-icon" style="margin-left:auto;font-size:10px;color:var(--text3);transition:transform .2s;"></i>
+  </button>
+  <div class="faq-body" style="display:none">
+    <div class="faq-card">
+      <h3><i class="fa-solid fa-spell-check"></i> ① スペルミス（コードの誤入力）</h3>
+      <div class="faq-item">
+        <div class="faq-q">scriptタグ名の打ち間違い</div>
+        <div class="faq-a">
+          正しくは <span class="faq-code">&lt;script&gt;</span> ですが、<span class="faq-code">&lt;scrpt&gt;</span>・<span class="faq-code">&lt;sript&gt;</span>・<span class="faq-code">&lt;scirpt&gt;</span> などと入力されているケースがあります。<br>
+          コピーペーストで挿入することをおすすめします。
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">URLの打ち間違い</div>
+        <div class="faq-a">
+          正しいURLは <span class="faq-code">https://zen.one/analytics.js</span> です。<br>
+          <span class="faq-code">zen.one/analytics.com</span>・<span class="faq-code">zen.one/anlytics.js</span> などに変わっていないかご確認ください。
+        </div>
       </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q">URLの打ち間違い</div>
-      <div class="faq-a">
-        正しいURLは <span class="faq-code">https://zen.one/analytics.js</span> です。<br>
-        <span class="faq-code">zen.one/analytics.com</span>・<span class="faq-code">zen.one/anlytics.js</span> などに変わっていないかご確認ください。
+    <div class="faq-card">
+      <h3><i class="fa-solid fa-location-dot"></i> ② 挿入場所の間違い</h3>
+      <div class="faq-item">
+        <div class="faq-q">正しい挿入場所は？</div>
+        <div class="faq-a">
+          <span class="faq-code">&lt;/head&gt;</span> タグの直前に挿入してください。<br>
+          <span class="faq-code">&lt;body&gt;</span> 内や、ページの途中に入れてしまうと正常に動作しない場合があります。
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="faq-card">
-    <h3><i class="fa-solid fa-location-dot"></i> ② 挿入場所の間違い</h3>
-    <div class="faq-item">
-      <div class="faq-q">正しい挿入場所は？</div>
-      <div class="faq-a">
-        <span class="faq-code">&lt;/head&gt;</span> タグの直前に挿入してください。<br>
-        <span class="faq-code">&lt;body&gt;</span> 内や、ページの途中に入れてしまうと正常に動作しない場合があります。
-      </div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">正しいコードの形式は？</div>
-      <div class="faq-a">
-        <span class="faq-code">&lt;script async src="https://zen.one/analytics.js"&gt;&lt;/script&gt;</span><br>
-        <span style="color:#c0392b">async</span> 属性が必要です。抜けていると表示速度に影響する場合があります。
+      <div class="faq-item">
+        <div class="faq-q">正しいコードの形式は？</div>
+        <div class="faq-a">
+          <span class="faq-code">&lt;script async src="https://zen.one/analytics.js"&gt;&lt;/script&gt;</span><br>
+          <span style="color:#c0392b">async</span> 属性が必要です。抜けていると表示速度に影響する場合があります。
+        </div>
       </div>
     </div>
   </div>
@@ -222,7 +225,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 </div>
 
 <script>
-function togglePaste() {
+function toggleFaq(btn) {
+  const body = btn.nextElementSibling;
+  const icon = btn.querySelector('.accordion-icon');
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  icon.style.transform = open ? '' : 'rotate(180deg)';
+}
+
   const area = document.getElementById('pasteArea');
   area.classList.toggle('open');
 }
@@ -303,7 +313,7 @@ function analyzeResult(data) {
   // ColorMeはアプリ連携方式
   if (data.colorme) {
     issues.push('ColorMeショップはアプリ連携でZenLinkを設置します。ZenLinkアプリがインストール済みかどうかは、ColorMeの管理画面でご確認ください。');
-    issues.push('実際のポップアップ表示は「海外IPプレビュー」タブからご確認ください。');
+    issues.push('実際のポップアップ表示は下の海外IPプレビューからご確認ください。');
     return {status: 'check', issues};
   }
 
@@ -311,17 +321,17 @@ function analyzeResult(data) {
   if (data.futureshop) {
     if (data.hasZenOneInEncoded) {
       issues.push('ZenLinkスクリプトが検出されました（futureshopのトラッキングタグ内に埋め込み済みの可能性があります）。');
-      issues.push('実際のポップアップ表示は「海外IPプレビュー」タブからご確認ください。');
+      issues.push('実際のポップアップ表示は下の海外IPプレビューからご確認ください。');
     } else {
       issues.push('futureshopではトラッキングタグ内にスクリプトを埋め込みます。自動検出が困難なため、管理画面のトラッキングタグ設定をご確認ください。');
-      issues.push('「海外IPプレビュー」タブでポップアップの表示状況もご確認ください。');
+      issues.push('下の海外IPプレビューでポップアップの表示状況もご確認ください。');
     }
     return {status: 'check', issues};
   }
 
   if (!data.hasZenOne) {
-    issues.push('スクリプトタグが見つかりません（未挿入）');
-    issues.push('まず「海外IPプレビュー」タブでポップアップが表示されているか確認してみてください。');
+    issues.push('スクリプトタグが見つかりません');
+    issues.push('まず下の海外IPプレビューでポップアップが表示されているか確認してみてください。');
     return {status: 'ng', issues};
   }
 
@@ -375,11 +385,6 @@ function cid(url) {
   return 'c' + Math.abs(h);
 }
 
-function switchTab(id, idx) {
-  const card = document.getElementById(id);
-  card.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', i === idx));
-  card.querySelectorAll('.tab-pane').forEach((p, i) => p.classList.toggle('active', i === idx));
-}
 
 function renderCard(url, analysis, platform, showSS = true) {
   const id = cid(url);
@@ -388,11 +393,12 @@ function renderCard(url, analysis, platform, showSS = true) {
   const bl = analysis.status === 'ok' ? 'OK — 正常' : analysis.status === 'ng' ? 'NG — 未挿入' : analysis.status === 'check' ? 'CHECK — 要確認' : 'WARN — 要確認';
   const issuesHtml = analysis.issues.map(i => `<li>${i}</li>`).join('');
 
-  // NG時はプレビュータブへの誘導バナーを表示
-  const ngBanner = analysis.status === 'ng' ? `
+  // NG / WARN 時はプレビュー誘導バナーを表示
+  const needsBanner = analysis.status === 'ng' || analysis.status === 'warn';
+  const guideBanner = needsBanner ? `
     <div style="margin-top:12px;padding:10px 14px;background:var(--warn-bg);border-radius:8px;font-size:12px;color:var(--warn-text);display:flex;gap:8px;align-items:flex-start;line-height:1.6;">
       <i class="fa-solid fa-circle-info" style="margin-top:2px;flex-shrink:0;"></i>
-      <span>まず上の<strong>「海外IPプレビュー」タブ</strong>でポップアップの表示状況を確認してみてください。表示されていれば設置済みの可能性があります。それでも不明な場合はページソースを貼り付けてご確認ください。</span>
+      <span>下の<strong>海外IPプレビュー</strong>でポップアップの表示状況を確認してみてください。表示されていれば設置済みの可能性があります。それでも不明な場合はページソースを貼り付けてご確認ください。</span>
     </div>
   ` : '';
 
@@ -401,29 +407,31 @@ function renderCard(url, analysis, platform, showSS = true) {
     : '';
   const ssId = id + '_ss';
 
+  const ssSection = showSS ? `
+    <div class="ss-section">
+      <div class="ss-section-label"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー</div>
+      <div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>
+      <p class="ss-note">
+        <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>確認まで数秒かかる場合があります。しばらくお待ちください。<br>
+        米国サーバー経由でのレンダリング表示です。ZenLinkのポップアップ除外設定を行っている場合や、特定条件下では表示されないことがあります。<br>
+        実際のブラウザでの確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
+      </p>
+    </div>
+  ` : '';
+
   const cardHtml = `<div class="result-card" id="${id}">
     <div class="rh">
       <span class="badge ${bc}">${bl}</span>
       <div class="rurl"><a href="${url}" target="_blank">${url}</a></div>
     </div>
     <div class="rb">
-      <div class="tabs">
-        <button class="tab active" onclick="switchTab('${id}',0)"><i class="fa-solid fa-list-check"></i>&nbsp;診断結果</button>
-        <button class="tab" onclick="switchTab('${id}',1)"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー</button>
-      </div>
-      <div class="tab-pane active" id="${id}_p0">
+      <div class="diag-section">
+        <div class="diag-section-label"><i class="fa-solid fa-list-check"></i>&nbsp;診断結果</div>
         <ul class="issue-list">${issuesHtml}</ul>
-        ${ngBanner}
+        ${guideBanner}
         ${platHtml}
       </div>
-      <div class="tab-pane" id="${id}_p1">
-        ${showSS ? `<div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>` : '<p style="font-size:13px;color:var(--text3);padding:8px 0">URLチェックモードでのみ利用できます。</p>'}
-        <p class="ss-note">
-          <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>確認まで数秒かかる場合があります。しばらくお待ちください。<br>
-          米国サーバー経由でのレンダリング表示です。ZenLinkのポップアップ除外設定を行っている場合や、特定条件下では表示されないことがあります。<br>
-          実際のブラウザでの確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
-        </p>
-      </div>
+      ${ssSection}
     </div>
   </div>`;
 
