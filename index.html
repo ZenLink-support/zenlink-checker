@@ -59,6 +59,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 .badge-ok{background:var(--ok-bg);color:var(--ok-text)}
 .badge-ng{background:var(--ng-bg);color:var(--ng-text)}
 .badge-warn{background:var(--warn-bg);color:var(--warn-text)}
+.badge-check{background:#e8f4ff;color:#2272c3;border:1px solid #b3d4f5}
 .badge-loading{background:var(--bg2);color:var(--text2)}
 .rurl{font-size:13px;font-weight:500;flex:1;word-break:break-all;padding-top:3px}
 .rurl a{color:var(--teal-dark);text-decoration:none}
@@ -170,7 +171,7 @@ function analyzeResult(data) {
   if (data.colorme) {
     issues.push('ColorMeショップはアプリ連携でZenLinkを設置します。ZenLinkアプリがインストール済みかどうかは、ColorMeの管理画面でご確認ください。');
     issues.push('実際のポップアップ表示は「海外IPプレビュー」タブからご確認ください。');
-    return {status: 'warn', issues};
+    return {status: 'check', issues};
   }
 
   if (!data.hasZenOne) {
@@ -223,8 +224,8 @@ function switchTab(id, idx) {
 function renderCard(url, analysis, platform) {
   const id = cid(url);
   const platInfo = platform ? PLATFORMS[platform] : null;
-  const bc = analysis.status === 'ok' ? 'badge-ok' : analysis.status === 'ng' ? 'badge-ng' : 'badge-warn';
-  const bl = analysis.status === 'ok' ? 'OK — 正常' : analysis.status === 'ng' ? 'NG — 未挿入' : 'WARN — 要確認';
+  const bc = analysis.status === 'ok' ? 'badge-ok' : analysis.status === 'ng' ? 'badge-ng' : analysis.status === 'check' ? 'badge-check' : 'badge-warn';
+  const bl = analysis.status === 'ok' ? 'OK — 正常' : analysis.status === 'ng' ? 'NG — 未挿入' : analysis.status === 'check' ? 'CHECK — 要確認' : 'WARN — 要確認';
   const issuesHtml = analysis.issues.map(i => `<li>${i}</li>`).join('');
   const platHtml = platInfo
     ? `<div class="plat"><i class="fa-solid fa-laptop"></i>&nbsp;${platInfo.name}&nbsp;·&nbsp;<a href="${platInfo.guide}" target="_blank">タグ設置ガイド <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px"></i></a></div>`
