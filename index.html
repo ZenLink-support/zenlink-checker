@@ -71,10 +71,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
 .rurl a{color:var(--teal-dark);text-decoration:none}
 .rurl a:hover{text-decoration:underline}
 .rb{border-top:1.5px solid var(--border);padding:14px 20px}
-.diag-section{margin-bottom:0}
-.diag-section-label{font-size:11px;font-weight:700;color:var(--teal-dark);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
-.ss-section{margin-top:16px;padding-top:14px;border-top:1.5px solid var(--border)}
-.ss-section-label{font-size:11px;font-weight:700;color:var(--text2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.diag-section{margin-top:16px;padding-top:14px;border-top:1.5px solid var(--border)}
+.diag-section-label{font-size:11px;font-weight:700;color:var(--text3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+.ss-section{margin-bottom:0}
+.ss-section-label{font-size:11px;font-weight:700;color:var(--teal-dark);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:5px}
 .issue-list{list-style:none;font-size:13px;color:var(--text2);line-height:1.9}
 .issue-list li{display:flex;gap:8px;align-items:flex-start}
 .issue-list li::before{content:"›";color:var(--teal);flex-shrink:0;font-weight:700;font-size:16px;line-height:1.4}
@@ -167,10 +167,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN','Y
   <div class="results" id="results"></div>
 
   <!-- よくある間違い（アコーディオン） -->
-  <button class="section-title accordion-toggle" style="margin-top:8px;width:100%;background:none;border:none;cursor:pointer;text-align:left;padding:0;" onclick="toggleFaq(this)">
+  <div class="section-title accordion-toggle" style="margin-top:8px;cursor:pointer;user-select:none;" onclick="toggleFaq(this)">
     <i class="fa-solid fa-triangle-exclamation"></i> よくある間違い
-    <i class="fa-solid fa-chevron-down accordion-icon" style="margin-left:auto;font-size:10px;color:var(--text3);transition:transform .2s;"></i>
-  </button>
+    <i class="fa-solid fa-chevron-down accordion-icon" style="margin-left:auto;font-size:10px;color:var(--text3);transition:transform .25s;"></i>
+  </div>
   <div class="faq-body" style="display:none">
     <div class="faq-card">
       <h3><i class="fa-solid fa-spell-check"></i> ① スペルミス（コードの誤入力）</h3>
@@ -312,62 +312,60 @@ function analyzeResult(data) {
 
   // ColorMeはアプリ連携方式
   if (data.colorme) {
-    issues.push('ColorMeショップはアプリ連携でZenLinkを設置します。ZenLinkアプリがインストール済みかどうかは、ColorMeの管理画面でご確認ください。');
-    issues.push('実際のポップアップ表示は下の海外IPプレビューからご確認ください。');
+    issues.push('ColorMeショップはアプリ連携でZenLinkを設置するため、HTMLソース上での自動検出はできません。');
+    issues.push('上のプレビューでポップアップが表示されていれば設置済みです。表示されない場合はColorMeの管理画面でZenLinkアプリのインストール状況をご確認ください。');
     return {status: 'check', issues};
   }
 
-  // futureshopはトラッキングタグ内にURLエンコードで埋め込まれるため通常HTML解析では検知困難
+  // futureshop
   if (data.futureshop) {
     if (data.hasZenOneInEncoded) {
-      issues.push('ZenLinkスクリプトが検出されました（futureshopのトラッキングタグ内に埋め込み済みの可能性があります）。');
-      issues.push('実際のポップアップ表示は下の海外IPプレビューからご確認ください。');
+      issues.push('futureshopのトラッキングタグ内にZenLinkスクリプトが検出されました。');
+      issues.push('上のプレビューでポップアップが表示されていれば設置済みです。');
     } else {
-      issues.push('futureshopではトラッキングタグ内にスクリプトを埋め込みます。自動検出が困難なため、管理画面のトラッキングタグ設定をご確認ください。');
-      issues.push('下の海外IPプレビューでポップアップの表示状況もご確認ください。');
+      issues.push('futureshopではトラッキングタグ内にスクリプトを埋め込むため、自動検出が困難です。');
+      issues.push('上のプレビューでポップアップが表示されていれば設置済みです。表示されない場合は管理画面のトラッキングタグ設定をご確認ください。');
     }
     return {status: 'check', issues};
   }
 
   if (!data.hasZenOne) {
-    issues.push('スクリプトタグが見つかりません');
-    issues.push('まず下の海外IPプレビューでポップアップが表示されているか確認してみてください。');
+    issues.push('HTMLソース上でスクリプトタグを検出できませんでした。');
+    issues.push('ただし上のプレビューでポップアップが表示されていれば実際には設置済みです（動的挿入等）。表示されない場合のみ設置状況をご確認ください。');
     return {status: 'ng', issues};
   }
 
   const targetTags = data.scriptTags || [];
 
   if (targetTags.length === 0) {
-    issues.push('zen.one/analytics.js への参照はありますが、認識できない形式で挿入されています');
+    issues.push('zen.one/analytics.js への参照は確認できましたが、scriptタグの形式が標準と異なります。上のプレビューで動作確認してください。');
     status = 'warn';
   }
 
   targetTags.forEach(tag => {
     if (!tag.includes('async')) {
-      issues.push('async 属性がありません（ページ表示速度に影響する可能性があります）');
+      issues.push('async 属性がありません。動作には影響しませんが、ページ表示速度の観点から推奨します。');
       if (status === 'ok') status = 'warn';
     }
     const m = tag.match(/src\s*=\s*["']([^"']+)["']/i);
     if (m && !m[1].startsWith('https://zen.one/analytics.js')) {
-      issues.push(`src URL が正しくありません: ${m[1]}`);
+      issues.push(`src URL が正しくありません: ${m[1]}（正しくは https://zen.one/analytics.js）`);
       if (status === 'ok') status = 'warn';
     }
   });
 
   if (!data.inHead) {
-    issues.push('スクリプトが &lt;head&gt; 内ではなく body 等に挿入されています（プラットフォームによっては正常な場合があります）');
+    issues.push('スクリプトが &lt;head&gt; 外に挿入されています。プラットフォームによっては正常な場合もあります。上のプレビューで動作確認してください。');
     if (status === 'ok') status = 'warn';
   }
 
-  // 誤ったURLの検出（analytics.js の後にクエリ文字列が続く場合は正常扱い）
   if (data.wrongUrls && data.wrongUrls.length > 0) {
     data.wrongUrls.forEach(u => {
-      issues.push(`URLが正しくありません: ${u}（正しいURL: https://zen.one/analytics.js）`);
+      issues.push(`URLに誤りがある可能性があります: ${u}（正しくは https://zen.one/analytics.js）`);
     });
     status = 'ng';
   }
 
-  // 打ち間違い検出
   if (data.typos && data.typos.length > 0) {
     data.typos.forEach(t => {
       issues.push(`コードに誤りがある可能性があります: ${t}`);
@@ -375,7 +373,7 @@ function analyzeResult(data) {
     if (status === 'ok') status = 'ng';
   }
 
-  if (status === 'ok') issues.push('正常: 推奨位置にスクリプトタグが確認できました');
+  if (status === 'ok') issues.push('スクリプトタグが推奨形式で確認できました。上のプレビューでポップアップの表示もあわせてご確認ください。');
   return {status, issues};
 }
 
@@ -389,19 +387,17 @@ function cid(url) {
 function renderCard(url, analysis, platform, showSS = true) {
   const id = cid(url);
   const platInfo = platform ? PLATFORMS[platform] : null;
-  const bc = analysis.status === 'ok' ? 'badge-ok' : analysis.status === 'ng' ? 'badge-ng' : analysis.status === 'check' ? 'badge-check' : 'badge-warn';
-  const bl = analysis.status === 'ok' ? 'OK — 正常' : analysis.status === 'ng' ? 'NG — 未挿入' : analysis.status === 'check' ? 'CHECK — 要確認' : 'WARN — 要確認';
+
+  // バッジ：NG/OK表記をなくし中立的に
+  const bc = analysis.status === 'ok' ? 'badge-ok' :
+             analysis.status === 'ng' ? 'badge-ng' :
+             analysis.status === 'check' ? 'badge-check' : 'badge-warn';
+  const bl = analysis.status === 'ok'    ? '✓ スクリプト確認' :
+             analysis.status === 'ng'    ? '△ 自動検出できませんでした' :
+             analysis.status === 'check' ? '— 手動確認が必要です' :
+                                           '△ 形式に注意があります';
+
   const issuesHtml = analysis.issues.map(i => `<li>${i}</li>`).join('');
-
-  // NG / WARN 時はプレビュー誘導バナーを表示
-  const needsBanner = analysis.status === 'ng' || analysis.status === 'warn';
-  const guideBanner = needsBanner ? `
-    <div style="margin-top:12px;padding:10px 14px;background:var(--warn-bg);border-radius:8px;font-size:12px;color:var(--warn-text);display:flex;gap:8px;align-items:flex-start;line-height:1.6;">
-      <i class="fa-solid fa-circle-info" style="margin-top:2px;flex-shrink:0;"></i>
-      <span>下の<strong>海外IPプレビュー</strong>でポップアップの表示状況を確認してみてください。表示されていれば設置済みの可能性があります。それでも不明な場合はページソースを貼り付けてご確認ください。</span>
-    </div>
-  ` : '';
-
   const platHtml = platInfo
     ? `<div class="plat"><i class="fa-solid fa-laptop"></i>&nbsp;${platInfo.name}&nbsp;·&nbsp;<a href="${platInfo.guide}" target="_blank">タグ設置ガイド <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:10px"></i></a></div>`
     : '';
@@ -409,15 +405,19 @@ function renderCard(url, analysis, platform, showSS = true) {
 
   const ssSection = showSS ? `
     <div class="ss-section">
-      <div class="ss-section-label"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー</div>
+      <div class="ss-section-label"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー <span style="font-weight:400;color:var(--text3);font-size:10px;margin-left:4px">米国サーバー経由</span></div>
       <div class="ss-wrap" id="${ssId}"><i class="fa-solid fa-spinner fa-spin"></i>&nbsp;読み込み中...</div>
       <p class="ss-note">
-        <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>確認まで数秒かかる場合があります。しばらくお待ちください。<br>
-        米国サーバー経由でのレンダリング表示です。ZenLinkのポップアップ除外設定を行っている場合や、特定条件下では表示されないことがあります。<br>
-        実際のブラウザでの確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
+        <i class="fa-solid fa-circle-info" style="margin-right:4px"></i>ポップアップが表示されていれば設置済みです。確認まで数秒かかる場合があります。<br>
+        ZenLinkのポップアップ除外設定を行っている場合や特定条件下では表示されないことがあります。実際のブラウザ確認は <a href="https://www.browserling.com" target="_blank">Browserling</a> もご利用ください。
       </p>
     </div>
-  ` : '';
+  ` : `
+    <div class="ss-section">
+      <div class="ss-section-label"><i class="fa-solid fa-camera"></i>&nbsp;海外IPプレビュー</div>
+      <p style="font-size:13px;color:var(--text3);padding:4px 0">URLチェックモードでのみ利用できます。</p>
+    </div>
+  `;
 
   const cardHtml = `<div class="result-card" id="${id}">
     <div class="rh">
@@ -425,13 +425,12 @@ function renderCard(url, analysis, platform, showSS = true) {
       <div class="rurl"><a href="${url}" target="_blank">${url}</a></div>
     </div>
     <div class="rb">
+      ${ssSection}
       <div class="diag-section">
-        <div class="diag-section-label"><i class="fa-solid fa-list-check"></i>&nbsp;診断結果</div>
+        <div class="diag-section-label"><i class="fa-solid fa-list-check"></i>&nbsp;自動診断の詳細</div>
         <ul class="issue-list">${issuesHtml}</ul>
-        ${guideBanner}
         ${platHtml}
       </div>
-      ${ssSection}
     </div>
   </div>`;
 
